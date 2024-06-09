@@ -10,10 +10,19 @@ type CheckingAccount struct {
 }
 
 func main() {
-	fmt.Println("New Checking Account\n",
-		CheckingAccount{
-			"John Doe",
-			1234,
-			5678,
-			1000.0})
+	johnsAccount := CheckingAccount{
+		"John Doe",
+		1234,
+		5678,
+		100.89,
+	}
+
+	marysAccount := CheckingAccount{
+		"Mary Jane",
+		1234,
+		5679,
+		238.43,
+	}
+
+	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 }
