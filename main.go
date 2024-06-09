@@ -1,80 +1,30 @@
 package main
 
-import "fmt"
-
-type CheckingAccount struct {
-	accountHolder string
-	branchNumber  int
-	accountNumber int
-	balance       float64
-}
-
-func (account *CheckingAccount) Withdraw(amount float64) (string, float64) {
-	var canWithdraw bool = account.balance < amount && amount > 0
-
-	if canWithdraw {
-		fmt.Println("Impossible to withdraw.")
-		return "Impossible to withdraw.", account.balance
-	}
-
-	account.balance -= amount
-	fmt.Println("Withdrawal successful")
-	return "Withdrawal successful", account.balance
-}
-
-func (account *CheckingAccount) Deposit(amount float64) (string, float64) {
-	var canDeposit bool = amount > 0
-
-	if canDeposit {
-		account.balance += amount
-		fmt.Println("Deposit successful")
-		return "Deposit successful", account.balance
-	}
-
-	fmt.Println("Impossible to deposit.")
-	return "Impossible to deposit.", account.balance
-}
-
-func (account *CheckingAccount) Transfer(amount float64, destinationAccount *CheckingAccount) (string, float64) {
-	var canTransfer bool = account.balance < amount && amount > 0
-
-	if canTransfer {
-		fmt.Println("Impossible to transfer.")
-		return "Impossible to transfer.", account.balance
-	}
-
-	account.balance -= amount
-	destinationAccount.balance += amount
-	fmt.Println("Transfer successful")
-	return "Transfer successful", account.balance
-}
+import (
+	"fmt"
+	"gobank/accounts"
+)
 
 func main() {
-	johnsAccount := CheckingAccount{
-		"John Doe",
-		1234,
-		5678,
-		100.89,
+	johnsAccount := accounts.CheckingAccount{
+		AccountHolder: "John Doe",
+		BranchNumber:  1234,
+		AccountNumber: 5678,
+		Balance:       100.89,
 	}
 
-	marysAccount := CheckingAccount{
-		"Mary Jane",
-		1234,
-		5679,
-		238.43,
+	marysAccount := accounts.CheckingAccount{
+		AccountHolder: "Mary Jane",
+		BranchNumber:  1234,
+		AccountNumber: 5679,
+		Balance:       238.43,
 	}
 
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-
 	johnsAccount.Withdraw(120.00)
-
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-
 	marysAccount.Deposit(100.00)
-
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-
 	johnsAccount.Transfer(50.00, &marysAccount)
-
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 }
