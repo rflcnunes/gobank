@@ -22,6 +22,19 @@ func (account *CheckingAccount) Withdraw(amount float64) string {
 	return "Withdrawal successful"
 }
 
+func (account *CheckingAccount) Deposit(amount float64) string {
+	var canDeposit bool = amount > 0
+
+	if canDeposit {
+		account.balance += amount
+		fmt.Println("Deposit successful")
+		return "Deposit successful"
+	}
+
+	fmt.Println("Impossible to deposit.")
+	return "Impossible to deposit."
+}
+
 func main() {
 	johnsAccount := CheckingAccount{
 		"John Doe",
@@ -40,6 +53,10 @@ func main() {
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 
 	johnsAccount.Withdraw(120.00)
+
+	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
+
+	marysAccount.Deposit(100.00)
 
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 }
