@@ -35,6 +35,20 @@ func (account *CheckingAccount) Deposit(amount float64) (string, float64) {
 	return "Impossible to deposit.", account.balance
 }
 
+func (account *CheckingAccount) Transfer(amount float64, destinationAccount *CheckingAccount) (string, float64) {
+	var canTransfer bool = account.balance < amount && amount > 0
+
+	if canTransfer {
+		fmt.Println("Impossible to transfer.")
+		return "Impossible to transfer.", account.balance
+	}
+
+	account.balance -= amount
+	destinationAccount.balance += amount
+	fmt.Println("Transfer successful")
+	return "Transfer successful", account.balance
+}
+
 func main() {
 	johnsAccount := CheckingAccount{
 		"John Doe",
@@ -57,6 +71,10 @@ func main() {
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 
 	marysAccount.Deposit(100.00)
+
+	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
+
+	johnsAccount.Transfer(50.00, &marysAccount)
 
 	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
 }
