@@ -1,9 +1,12 @@
 package accounts
 
-import "fmt"
+import (
+	"fmt"
+	"gobank/customers"
+)
 
 type CheckingAccount struct {
-	AccountHolder string
+	AccountHolder customers.Holder
 	BranchNumber  int
 	AccountNumber int
 	Balance       float64

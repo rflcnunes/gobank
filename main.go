@@ -3,28 +3,35 @@ package main
 import (
 	"fmt"
 	"gobank/accounts"
+	"gobank/customers"
 )
 
 func main() {
+	johns := customers.Holder{
+		Name:           "John Doe",
+		DocumentNumber: "12345678900",
+		Job:            "Software Developer I",
+	}
+
+	maryJane := customers.Holder{
+		Name:           "Mary Jane",
+		DocumentNumber: "12345678901",
+		Job:            "Software Developer II",
+	}
+
 	johnsAccount := accounts.CheckingAccount{
-		AccountHolder: "John Doe",
+		AccountHolder: johns,
 		BranchNumber:  1234,
 		AccountNumber: 5678,
 		Balance:       100.89,
 	}
 
 	marysAccount := accounts.CheckingAccount{
-		AccountHolder: "Mary Jane",
+		AccountHolder: maryJane,
 		BranchNumber:  1234,
 		AccountNumber: 5679,
 		Balance:       238.43,
 	}
 
-	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-	johnsAccount.Withdraw(120.00)
-	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-	marysAccount.Deposit(100.00)
-	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
-	johnsAccount.Transfer(50.00, &marysAccount)
-	fmt.Println("Checking Accounts\n", johnsAccount, "\n", marysAccount)
+	fmt.Println("Accounts\n", johnsAccount, "\n", marysAccount)
 }
