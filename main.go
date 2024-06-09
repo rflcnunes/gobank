@@ -2,9 +2,18 @@ package main
 
 import "fmt"
 
-func main() {
-	var accountHolder string
-	accountHolder = "John Doe"
+type CheckingAccount struct {
+	accountHolder string
+	branchNumber  int
+	accountNumber int
+	balance       float64
+}
 
-	fmt.Println("Account Holder:", accountHolder)
+func main() {
+	fmt.Println("New Checking Account\n",
+		CheckingAccount{
+			"John Doe",
+			1234,
+			5678,
+			1000.0})
 }
