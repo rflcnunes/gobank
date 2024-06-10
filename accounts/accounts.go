@@ -6,10 +6,9 @@ import (
 )
 
 type CheckingAccount struct {
-	AccountHolder customers.Holder
-	BranchNumber  int
-	AccountNumber int
-	balance       float64
+	AccountHolder               customers.Holder
+	BranchNumber, AccountNumber int
+	balance                     float64
 }
 
 func (account *CheckingAccount) Withdraw(amount float64) (string, float64) {
@@ -50,4 +49,8 @@ func (account *CheckingAccount) Transfer(amount float64, destinationAccount *Che
 	destinationAccount.balance += amount
 	fmt.Println("Transfer successful")
 	return "Transfer successful", account.balance
+}
+
+func (account *CheckingAccount) GetBalance() float64 {
+	return account.balance
 }
