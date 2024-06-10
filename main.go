@@ -25,6 +25,12 @@ func main() {
 		AccountNumber: 5678,
 	}
 
+	johnsSavingAccount := accounts.SavingsAccount{
+		AccountHolder: johns,
+		BranchNumber:  1234,
+		AccountNumber: 5678,
+	}
+
 	marysAccount := accounts.CheckingAccount{
 		AccountHolder: maryJane,
 		BranchNumber:  1234,
@@ -32,4 +38,10 @@ func main() {
 	}
 
 	fmt.Println("Accounts\n", johnsAccount, "\n", marysAccount)
+	johnsAccount.Deposit(1000.98)
+	johnsSavingAccount.Deposit(12000.98)
+	fmt.Println("John's balance after deposit:",
+		johnsAccount.GetBalance(),
+		johnsSavingAccount.GetBalance())
+
 }
