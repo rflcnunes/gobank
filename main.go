@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gobank/accounts"
 	"gobank/customers"
+	"gobank/payments"
 )
 
 func main() {
@@ -44,4 +45,7 @@ func main() {
 		johnsAccount.GetBalance(),
 		johnsSavingAccount.GetBalance())
 
+	fmt.Println("John's balance before transfer:", johnsAccount.GetBalance())
+	payments.PayBillet(&johnsAccount, 500)
+	fmt.Println("John's balance after payment:", johnsAccount.GetBalance())
 }
