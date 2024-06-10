@@ -23,14 +23,12 @@ func main() {
 		AccountHolder: johns,
 		BranchNumber:  1234,
 		AccountNumber: 5678,
-		Balance:       100.89,
 	}
 
 	marysAccount := accounts.CheckingAccount{
 		AccountHolder: maryJane,
 		BranchNumber:  1234,
 		AccountNumber: 5679,
-		Balance:       238.43,
 	}
 
 	fmt.Println("Accounts\n", johnsAccount, "\n", marysAccount)
